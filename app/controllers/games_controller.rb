@@ -21,6 +21,15 @@ class GamesController < ApplicationController
 	def edit
 		@game = Game.find(params[:id])
 	end
+
+	def update
+		@game = Game.find(params[:id])
+		if @game.update(game_params)
+			redirect_to @game
+		else
+			render :edit
+		end
+	end
 end
 
 private
