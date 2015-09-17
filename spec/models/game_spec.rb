@@ -13,9 +13,9 @@ RSpec.describe Game, type: :model do
   end
 
   it "is invalid without players" do
-  	game = build(:default_game, players: nil)
+  	game = build(:default_game, players_count: nil)
     game.valid?
-    expect(game.errors[:players].size).to eq(1)
+    expect(game.errors[:players_count].size).to eq(1)
   end
 
   it "is invalid without an amount per card" do

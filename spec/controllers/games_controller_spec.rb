@@ -95,7 +95,7 @@ RSpec.describe GamesController, type: :controller do
   			patch :update, id: @game, game: attributes_for(:game, name: "Changed it")
   			@game.reload
   			expect(@game.name).to eq "Changed it"
-  			expect(@game.players).to eq @game.players
+  			expect(@game.players_count).to eq @game.players_count
   			expect(@game.amount_per_card).to eq @game.amount_per_card
   		end
 
@@ -111,7 +111,7 @@ RSpec.describe GamesController, type: :controller do
   			patch :update, id: @game, game: attributes_for(:game, name: nil)
   			@game.reload
   			expect(@game.name).to eq game_info.name
-  			expect(@game.players).to eq game_info.players
+  			expect(@game.players_count).to eq game_info.players_count
   			expect(@game.amount_per_card).to eq game_info.amount_per_card
   		end
 

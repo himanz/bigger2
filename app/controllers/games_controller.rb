@@ -37,5 +37,5 @@ end
 private
 
 def game_params
-	params.require(:game).permit(:name, :players, :amount_per_card)
+	params.require(:game).permit(:name, :players_count, :amount_per_card)
 end
