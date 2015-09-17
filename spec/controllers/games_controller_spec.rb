@@ -55,4 +55,12 @@ RSpec.describe GamesController, type: :controller do
   	context "with invalid attributes" do
   	end
   end
+
+  describe 'GET #edit do' do
+  	it "assigns the requested game to @game" do
+  		game = create(:game)
+  		get :edit, id: game
+  		expect(assigns(:game)).to eq game
+  	end
+  end
 end
