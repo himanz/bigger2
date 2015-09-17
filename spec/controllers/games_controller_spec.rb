@@ -53,6 +53,16 @@ RSpec.describe GamesController, type: :controller do
   	end
 
   	context "with invalid attributes" do
+  		it "does not save the new game in the database" do
+	  		expect{
+	  			post :create, game: attributes_for(:game, name: nil)
+	  		}.to change(Game, :count).by(0)
+  	  end
+
+  	  it "re-renders new template" do
+  	  	post :create, game: attributes_for(:game, name: nil)
+  	  	expect(response).to render_template :new
+  	  end
   	end
   end
 
