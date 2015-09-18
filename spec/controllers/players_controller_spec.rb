@@ -25,4 +25,29 @@ RSpec.describe PlayersController, type: :controller do
   		expect(response).to render_template :show
   	end
   end
+
+  describe 'GET #new' do
+  	it "assigns a new player to @player" do
+  		get :new
+  		expect(assigns(:player)).to be_a_new(Player)
+  	end
+  end
+
+  describe 'POST #create' do
+  	context "with valid attributes" do
+  		it "saves the new player in the database" do
+  			expect{
+  				post :create, player: attributes_for(:player)
+  			}.to change(Player, :count).by(1)
+  		end
+  	end
+
+  	context "with invalid attributes" do
+  		it "does not save the new game in the database" do
+	  		expect{
+	  			post :create, player: attributes_for(:player, name: nil)
+	  		}.to change(Player, :count).by(0)
+  	  end
+  	end
+  end
 end
