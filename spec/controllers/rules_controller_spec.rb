@@ -17,19 +17,19 @@ RSpec.describe RulesController, type: :controller do
   	end
   end
 
-  # describe 'GET#show' do
-  # 	it "assigns the correct game to @game" do
-  # 		game = create(:game)
-  # 		get :show, id: game
-  # 		expect(assigns(:game)).to eq game
-  # 	end
+  describe 'GET#show' do
+  	it "assigns the correct rule to @rule" do
+  		rule = create(:rule)
+  		get :show, id: rule
+  		expect(assigns(:rule)).to eq rule
+  	end
 
-  # 	it "renders the :show view" do
-  # 		game = create(:game)
-  # 		get :show, id: game
-  # 		expect(response).to render_template :show
-  # 	end
-  # end
+  	it "renders the :show view" do
+  		rule = create(:rule)
+  		get :show, id: rule
+  		expect(response).to render_template :show
+  	end
+  end
 
   # describe 'GET #new' do
   # 	it "assigns a new game to @game" do
