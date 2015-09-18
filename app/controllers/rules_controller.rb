@@ -6,4 +6,8 @@ class RulesController < ApplicationController
 	def show
     @rule = Rule.find(params[:id])
 	end
+
+	def new
+    @rule = Rule.new
+	end
 end

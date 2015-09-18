@@ -31,12 +31,12 @@ RSpec.describe RulesController, type: :controller do
   	end
   end
 
-  # describe 'GET #new' do
-  # 	it "assigns a new game to @game" do
-  # 		get :new
-  # 		expect(assigns(:game)).to be_a_new(Game)
-  # 	end
-  # end
+  describe 'GET #new' do
+  	it "assigns a new rule to @rule" do
+  		get :new
+  		expect(assigns(:rule)).to be_a_new(Rule)
+  	end
+  end
 
   # describe 'POST #create' do
   # 	context "with valid attributes" do
