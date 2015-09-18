@@ -1,5 +1,6 @@
 class Player < ActiveRecord::Base
 	validates :name, presence: true
 
-	has_and_belongs_to_many :games
+  has_many :rosters
+	has_many :games, through: :rosters
 end

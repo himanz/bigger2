@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150918011237) do
+ActiveRecord::Schema.define(version: 20150918042719) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,7 +22,6 @@ ActiveRecord::Schema.define(version: 20150918011237) do
     t.decimal  "amount_per_card"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-    t.integer  "player_id"
     t.string   "player1"
     t.string   "player2"
     t.string   "player3"
@@ -33,7 +32,13 @@ ActiveRecord::Schema.define(version: 20150918011237) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "rosters", force: :cascade do |t|
     t.integer  "game_id"
+    t.integer  "player_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
