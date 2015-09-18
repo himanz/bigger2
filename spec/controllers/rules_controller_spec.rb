@@ -56,19 +56,19 @@ RSpec.describe RulesController, type: :controller do
   	end
   end
 
-  # describe 'GET #edit' do
-  # 	it "assigns the requested game to @game" do
-  # 		game = create(:game)
-  # 		get :edit, id: game
-  # 		expect(assigns(:game)).to eq game
-  # 	end
+  describe 'GET #edit' do
+  	it "assigns the requested game to @rule" do
+  		rule = create(:rule)
+  		get :edit, id: rule
+  		expect(assigns(:rule)).to eq rule
+  	end
 
-  # 	it "renders the :edit template" do
-  # 		game = create(:game)
-  # 		get :edit, id: game
-  # 		expect(response).to render_template :edit
-  # 	end
-  # end
+  	it "renders the :edit template" do
+  		rule = create(:rule)
+  		get :edit, id: rule
+  		expect(response).to render_template :edit
+  	end
+  end
 
   # describe "PATCH #update" do
   # 	before :each do

@@ -16,6 +16,10 @@ class RulesController < ApplicationController
 		@rule.save
 	end
 
+	def edit
+		@rule = Rule.find(params[:id])
+	end
+
 	private
 
 	def rules_params
