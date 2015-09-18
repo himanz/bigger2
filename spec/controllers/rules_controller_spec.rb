@@ -38,33 +38,23 @@ RSpec.describe RulesController, type: :controller do
   	end
   end
 
-  # describe 'POST #create' do
-  # 	context "with valid attributes" do
-  # 		it "saves the new game in the database" do
-  # 			expect{
-  # 				post :create, game: attributes_for(:game)
-  # 			}.to change(Game, :count).by(1)
-  # 		end
+  describe 'POST #create' do
+  	context "with valid attributes" do
+  		it "saves the new rule in the database" do
+  			expect{
+  				post :create, rule: attributes_for(:rule)
+  			}.to change(Rule, :count).by(1)
+  		end
+  	end
 
-  # 		it "redirects to game #show" do
-  # 			post :create, game: attributes_for(:game)
-  # 			expect(response).to redirect_to game_path(assigns(:game))
-  # 	  end
-  # 	end
-
-  # 	context "with invalid attributes" do
-  # 		it "does not save the new game in the database" do
-	 #  		expect{
-	 #  			post :create, game: attributes_for(:game, name: nil)
-	 #  		}.to change(Game, :count).by(0)
-  # 	  end
-
-  # 	  it "re-renders new template" do
-  # 	  	post :create, game: attributes_for(:game, name: nil)
-  # 	  	expect(response).to render_template :new
-  # 	  end
-  # 	end
-  # end
+  	context "with invalid attributes" do
+  		it "does not save the new rule in the database" do
+	  		expect{
+	  			post :create, rule: attributes_for(:rule, title: nil)
+	  		}.to change(Rule, :count).by(0)
+  	  end
+  	end
+  end
 
   # describe 'GET #edit' do
   # 	it "assigns the requested game to @game" do

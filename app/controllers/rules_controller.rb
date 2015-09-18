@@ -10,4 +10,19 @@ class RulesController < ApplicationController
 	def new
     @rule = Rule.new
 	end
+
+	def create
+		@rule = Rule.new(rules_params)
+		@rule.save
+	end
+
+	private
+
+	def rules_params
+		params.require(:rule).permit(:title, :winner_points, :winner_points_amount, :line1_min, :line1_max, :line1_multiplier,
+			                           :line2_min, :line2_max, :line2_multiplier,
+			                           :line3_min, :line3_max, :line3_multiplier,
+			                           :line4_min, :line4_max, :line4_multiplier,
+			                           :line5_min, :line5_max, :line5_multiplier)
+	end
 end
