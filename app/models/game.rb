@@ -8,7 +8,7 @@ class Game < ActiveRecord::Base
 	def build_player
 		players_array = [player1, player2, player3, player4]
 		for i in 0..players_array.length
-			unless Player.where(name: players_array[i]) == true
+			unless Player.where(name: players_array[i]).first
 				Player.create(name: players_array[i])
 			end
 		end
