@@ -25,7 +25,7 @@ class RulesController < ApplicationController
 		if @rule.update(rules_params)
 			redirect_to @rule
 		else
-
+      render :edit
 		end
 	end
 

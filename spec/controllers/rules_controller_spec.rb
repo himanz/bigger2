@@ -90,25 +90,25 @@ RSpec.describe RulesController, type: :controller do
   		end
 
   		it "redirects to the updated rule" do
-  			patch :update, id: @rule, rule: attributes_for(:game, line5_multiplier: 6)
+  			patch :update, id: @rule, rule: attributes_for(:rule, line5_multiplier: 6)
   			expect(response).to redirect_to @rule
   		end
   	end
 
-  	# context "with invalid attributes" do
-  	# 	it "does not change the company's attributes" do
-  	# 		game_info = @game
-  	# 		patch :update, id: @game, game: attributes_for(:game, name: nil)
-  	# 		@game.reload
-  	# 		expect(@game.name).to eq game_info.name
-  	# 		expect(@game.players_count).to eq game_info.players_count
-  	# 		expect(@game.amount_per_card).to eq game_info.amount_per_card
-  	# 	end
+  	context "with invalid attributes" do
+  		it "does not change the rule's attributes" do
+  			rule_info = @rule
+  			patch :update, id: @rule, rule: attributes_for(:rule, title: nil)
+  			@rule.reload
+  			expect(@rule.title).to eq rule_info.title
+  			expect(@rule.line1_min).to eq rule_info.line1_min
+  			expect(@rule.line5_multiplier).to eq rule_info.line5_multiplier
+  		end
 
-  	# 	it "re-renders the edit template" do
-  	# 		patch :update, id: @game, game: attributes_for(:game, name: nil)
-  	# 		expect(response).to render_template :edit
-  	# 	end
-  	# end
+  		it "re-renders the edit template" do
+  			patch :update, id: @rule, rule: attributes_for(:rule, title: nil)
+  			expect(response).to render_template :edit
+  		end
+  	end
   end
 end

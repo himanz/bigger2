@@ -106,7 +106,7 @@ RSpec.describe GamesController, type: :controller do
   	end
 
   	context "with invalid attributes" do
-  		it "does not change the company's attributes" do
+  		it "does not change the game's attributes" do
   			game_info = @game
   			patch :update, id: @game, game: attributes_for(:game, name: nil)
   			@game.reload
