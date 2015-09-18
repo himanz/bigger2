@@ -70,45 +70,45 @@ RSpec.describe RulesController, type: :controller do
   	end
   end
 
-  # describe "PATCH #update" do
-  # 	before :each do
-  # 		@game = create(:game)
-  # 	end
+  describe "PATCH #update" do
+  	before :each do
+  		@rule = create(:rule)
+  	end
 
-  # 	context "with valid attributes" do
-  # 		it "located the requested @game" do
-  # 			patch :update, id: @game, game: attributes_for(:game)
-  # 			expect(assigns(:game)).to eq @game
-  # 		end
+  	context "with valid attributes" do
+  		it "located the requested @rule" do
+  			patch :update, id: @rule, rule: attributes_for(:rule)
+  			expect(assigns(:rule)).to eq @rule
+  		end
 
-  # 		it "changes the @game's attributes" do
-  # 			patch :update, id: @game, game: attributes_for(:game, name: "Changed it")
-  # 			@game.reload
-  # 			expect(@game.name).to eq "Changed it"
-  # 			expect(@game.players_count).to eq @game.players_count
-  # 			expect(@game.amount_per_card).to eq @game.amount_per_card
-  # 		end
+  		it "changes the @rule's attributes" do
+  			patch :update, id: @rule, rule: attributes_for(:rule, line5_multiplier: 6)
+  			@rule.reload
+  			expect(@rule.line5_multiplier).to eq 6
+  			expect(@rule.title).to eq @rule.title
+  			expect(@rule.line1_min).to eq @rule.line1_min
+  		end
 
-  # 		it "redirects to the updated game" do
-  # 			patch :update, id: @game, game: attributes_for(:game, name: "Changed it")
-  # 			expect(response).to redirect_to @game
-  # 		end
-  # 	end
+  		it "redirects to the updated rule" do
+  			patch :update, id: @rule, rule: attributes_for(:game, line5_multiplier: 6)
+  			expect(response).to redirect_to @rule
+  		end
+  	end
 
-  # 	context "with invalid attributes" do
-  # 		it "does not change the company's attributes" do
-  # 			game_info = @game
-  # 			patch :update, id: @game, game: attributes_for(:game, name: nil)
-  # 			@game.reload
-  # 			expect(@game.name).to eq game_info.name
-  # 			expect(@game.players_count).to eq game_info.players_count
-  # 			expect(@game.amount_per_card).to eq game_info.amount_per_card
-  # 		end
+  	# context "with invalid attributes" do
+  	# 	it "does not change the company's attributes" do
+  	# 		game_info = @game
+  	# 		patch :update, id: @game, game: attributes_for(:game, name: nil)
+  	# 		@game.reload
+  	# 		expect(@game.name).to eq game_info.name
+  	# 		expect(@game.players_count).to eq game_info.players_count
+  	# 		expect(@game.amount_per_card).to eq game_info.amount_per_card
+  	# 	end
 
-  # 		it "re-renders the edit template" do
-  # 			patch :update, id: @game, game: attributes_for(:game, name: nil)
-  # 			expect(response).to render_template :edit
-  # 		end
-  # 	end
-  # end
+  	# 	it "re-renders the edit template" do
+  	# 		patch :update, id: @game, game: attributes_for(:game, name: nil)
+  	# 		expect(response).to render_template :edit
+  	# 	end
+  	# end
+  end
 end

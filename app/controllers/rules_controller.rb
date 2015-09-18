@@ -20,6 +20,15 @@ class RulesController < ApplicationController
 		@rule = Rule.find(params[:id])
 	end
 
+	def update
+		@rule = Rule.find(params[:id])
+		if @rule.update(rules_params)
+			redirect_to @rule
+		else
+
+		end
+	end
+
 	private
 
 	def rules_params
