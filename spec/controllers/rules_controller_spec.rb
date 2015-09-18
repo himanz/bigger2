@@ -1,21 +1,21 @@
 require 'rails_helper'
 
 RSpec.describe RulesController, type: :controller do
-  # describe 'GET#index' do
-  # 	context 'without params' do
-  # 		it "populates an array with all the rules" do
-  # 			game1 = create(:rule)
-  # 			game2 = create(:rule2)
-  # 			get :index
-  # 			expect(assigns(:games)).to match_array([game1, game2])
-  # 		end
+  describe 'GET#index' do
+  	context 'without params' do
+  		it "populates an array with all the rules" do
+  			rule1 = create(:rule)
+  			rule2 = create(:rule, title: "Second")
+  			get :index
+  			expect(assigns(:rules)).to match_array([rule1, rule2])
+  		end
 
-  # 		it "renders the :index view" do
-  # 			get :index
-  # 			expect(response).to render_template :index
-  # 		end
-  # 	end
-  # end
+  		it "renders the :index view" do
+  			get :index
+  			expect(response).to render_template :index
+  		end
+  	end
+  end
 
   # describe 'GET#show' do
   # 	it "assigns the correct game to @game" do

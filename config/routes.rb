@@ -56,4 +56,5 @@ Rails.application.routes.draw do
   resources :games
   resources :players
   resources :rosters, only: [:new, :create]
+  resources :rules
 end
