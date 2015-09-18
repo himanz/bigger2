@@ -1,5 +1,6 @@
 FactoryGirl.define do
   factory :rule do
+  	title "Default"
     winner_points false
 		winner_points_amount 0
 		line1_min 1

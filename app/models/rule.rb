@@ -1,6 +1,7 @@
 class Rule < ActiveRecord::Base
 	validates_inclusion_of :winner_points, in: [true, false]
-	validates :winner_points_amount, 
+	validates :title,
+	          :winner_points_amount, 
 	          :line1_min,
 	          :line1_max,
 	          :line1_multiplier,

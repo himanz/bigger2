@@ -6,6 +6,12 @@ RSpec.describe Rule, type: :model do
   	expect(rule).to be_valid
   end
 
+  it "is invalid without a title" do
+    rule = build(:rule, title: nil)
+    rule.valid?
+    expect(rule.errors[:title].size).to eq(1)
+  end
+
   it "is invalid without winner_points" do
   	rule = build(:rule, winner_points: nil)
     rule.valid?
