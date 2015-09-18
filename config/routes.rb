@@ -54,4 +54,5 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
   resources :games
+  resources :players
 end
