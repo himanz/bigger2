@@ -7,6 +7,7 @@ class Game < ActiveRecord::Base
   has_many :rosters
 	has_many :players, through: :rosters
 
+  # Creates a player if no player under the same name is found in database
 	def build_player
 		players_array = [player1, player2, player3, player4]
 		for i in 0..players_array.length-1
@@ -16,6 +17,7 @@ class Game < ActiveRecord::Base
 		end
 	end
 
+  # Creates association between games and players through roster
 	def build_roster
 		players_array = [player1, player2, player3, player4]
 		for i in 0..players_array.length-1
