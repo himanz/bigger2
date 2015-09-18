@@ -48,8 +48,11 @@ RSpec.describe Game, type: :model do
     expect(game.errors[:player4].size).to eq(1)
   end
 
-  # it "creates players objects" do
-  # 	game = create(:game)
-  # 	expect(Player.find(name: game.player1)).to be_valid
-  # end
+  it "creates players objects" do
+  	game = create(:game)
+  	expect(Player.where(name: game.player1)).to be_present
+  	expect(Player.where(name: game.player2)).to be_present
+  	expect(Player.where(name: game.player3)).to be_present
+  	expect(Player.where(name: game.player4)).to be_present
+  end
 end
