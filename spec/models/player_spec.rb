@@ -25,4 +25,15 @@ RSpec.describe Player, type: :model do
   	game2 = create(:game, name: "game2")
   	expect(Player.where(name: game.player1).count).to eq(1)
   end
+
+  it "is associated with a game" do
+  	game = create(:game)
+  	expect(Player.where(name: game.player1).first.games.count).to eq(1)
+  end
+
+  it "is associated with multiple games" do
+  	game = create(:game)
+  	game2 = create(:game, name: "Testing")
+  	expect(Player.where(name: game.player1).first.games.count).to eq(2)
+  end
 end

@@ -47,4 +47,9 @@ RSpec.describe Game, type: :model do
     game.valid?
     expect(game.errors[:player4].size).to eq(1)
   end
+
+  it "associates players with game" do
+  	game = create(:game)
+  	expect(Game.where(id: game).first.players.count).to eq(4)
+  end
 end
