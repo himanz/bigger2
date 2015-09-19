@@ -7,6 +7,7 @@ FactoryGirl.define do
     player2 "Julio"
     player3 "Jonathan"
     player4 "Alex"
+    rule_id 1
 
     factory :default_game do
     	name "Default Game"

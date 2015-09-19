@@ -48,8 +48,20 @@ RSpec.describe Game, type: :model do
     expect(game.errors[:player4].size).to eq(1)
   end
 
+  it "is invalid without a rule_id" do
+  	game = build(:default_game, rule_id: nil)
+  	game.valid?
+  	expect(game.errors[:rule_id].size).to eq(1)
+  end
+
   it "associates players with game" do
   	game = create(:game)
   	expect(Game.where(id: game).first.players.count).to eq(4)
+  end
+
+  it "associates game with a rule" do
+  	rule = create(:rule)
+  	game = create(:game, rule_id: rule.id)
+  	expect(game.rule).to eq(rule)
   end
 end

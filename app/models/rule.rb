@@ -17,4 +17,6 @@ class Rule < ActiveRecord::Base
 	          :line5_min,
 	          :line5_max,
 	          :line5_multiplier, presence: true
+
+	has_many :games
 end

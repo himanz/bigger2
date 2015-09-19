@@ -2,10 +2,12 @@ class Game < ActiveRecord::Base
   before_create :build_player
   after_create :build_roster
 
-	validates :name, :players_count, :amount_per_card, :player1, :player2, :player3, :player4, presence: true
+	validates :name, :players_count, :amount_per_card, :player1, :player2, :player3, :player4, :rule_id, presence: true
 
   has_many :rosters
 	has_many :players, through: :rosters
+
+	belongs_to :rule
 
   # Creates a player if no player under the same name is found in database
 	def build_player

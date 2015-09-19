@@ -114,4 +114,10 @@ RSpec.describe Rule, type: :model do
     expect(rule.errors[:line5_multiplier].size).to eq(1)
   end
 
+  it "associates rules with games" do
+    rule = create(:rule)
+    game1 = create(:game, rule_id: rule.id)
+    game2 = create(:game, name: "Testing", rule_id: rule.id)
+    expect(Rule.where(id: rule).first.games.count).to eq(2)
+  end
 end
