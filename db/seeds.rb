@@ -29,3 +29,10 @@ Rule.create(title: "Default",
 Game.create(name: "game1", players_count: 4, amount_per_card: 0.5, player1: "Jonos", player2: "Julio", player3: "Jonathan", player4: "Alex", rule_id:1)
 Game.create(name: "game2", players_count: 4, amount_per_card: 0.5, player1: "Jonos", player2: "Julio", player3: "Jonathan", player4: "D", rule_id: 1)
 
+Hand.create(game_id: 1)
+
+Score.create(cards_left: 4, points: 4, hand_id: 1, player_id: 1)
+Score.create(cards_left: 3, points: 3, hand_id: 1, player_id: 2)
+Score.create(cards_left: 1, points: 1, hand_id: 1, player_id: 3)
+Score.create(cards_left: 0, points: 0, hand_id: 1, player_id: 4)
+
