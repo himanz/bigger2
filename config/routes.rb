@@ -53,7 +53,9 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-  resources :games
+  resources :games do
+    resources :hands, except: [:edit, :update]
+  end
   resources :players
   resources :rosters, only: [:new, :create]
   resources :rules
