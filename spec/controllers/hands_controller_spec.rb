@@ -46,31 +46,35 @@ RSpec.describe HandsController, type: :controller do
     end
   end
 
-  # describe 'POST #create' do
-  #   context "with valid attributes" do
-  #     it "saves the new game in the database" do
-  #       expect{
-  #         post :create, game: attributes_for(:game)
-  #       }.to change(Game, :count).by(1)
-  #     end
+  describe 'POST #create' do
+    context "with valid attributes" do
+      it "saves the new hand in the database" do
+        game = create(:game)
+        expect{
+          post :create, hand: attributes_for(:hand, game_id: game.id), game_id: game.id
+        }.to change(Hand, :count).by(1)
+      end
 
-  #     it "redirects to game #show" do
-  #       post :create, game: attributes_for(:game)
-  #       expect(response).to redirect_to game_path(assigns(:game))
-  #     end
-  #   end
+      it "redirects to hand #index with game id paramter" do
+        game = create(:game)
+        post :create, hand: attributes_for(:hand, game_id: game.id), game_id: game.id
+        expect(response).to redirect_to game_hands_path(game.id)
+      end
+    end
 
-  #   context "with invalid attributes" do
-  #     it "does not save the new game in the database" do
-  #       expect{
-  #         post :create, game: attributes_for(:game, name: nil)
-  #       }.to change(Game, :count).by(0)
-  #     end
+    context "with invalid attributes" do
+      it "does not save the new hand in the database" do
+        game = create(:game)
+        expect{
+          post :create, hand: attributes_for(:hand, game_id: nil), game_id: game.id
+        }.to change(Hand, :count).by(0)
+      end
 
-  #     it "re-renders new template" do
-  #       post :create, game: attributes_for(:game, name: nil)
-  #       expect(response).to render_template :new
-  #     end
-  #   end
-  # end
+      it "re-renders new template" do
+        game = create(:game)
+        post :create, hand: attributes_for(:hand, game_id: nil), game_id: game.id
+        expect(response).to render_template :new, game.id
+      end
+    end
+  end
 end

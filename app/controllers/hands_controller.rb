@@ -10,4 +10,19 @@ class HandsController < ApplicationController
 	def new
 		@hand = Hand.new
 	end
+
+	def create
+		@hand = Hand.new(hand_params)
+		if @hand.save
+			redirect_to game_hands_path(@hand.game_id)
+		else
+			render :new
+		end
+	end
+
+	private
+
+	def hand_params
+		params.require(:hand).permit(:game_id)
+	end
 end
