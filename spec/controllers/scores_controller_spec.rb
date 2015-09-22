@@ -39,4 +39,18 @@ RSpec.describe ScoresController, type: :controller do
       end
     end
   end
+
+  describe 'GET #edit' do
+  	it "assigns the requested score to @score" do
+  		score = create(:score)
+  		get :edit, id: score
+  		expect(assigns(:score)).to eq score
+  	end
+
+  	it "renders the :edit template" do
+  		score = create(:score)
+  		get :edit, id: score
+  		expect(response).to render_template :edit
+  	end
+  end
 end

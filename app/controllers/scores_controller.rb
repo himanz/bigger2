@@ -11,6 +11,10 @@ class ScoresController < ApplicationController
 		end
 	end
 
+	def edit
+		@score = Score.find(params[:id])
+	end
+
 	private
 
 	def score_params
