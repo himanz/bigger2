@@ -64,4 +64,11 @@ RSpec.describe Game, type: :model do
   	game = create(:game, rule_id: rule.id)
   	expect(game.rule).to eq(rule)
   end
+
+  it "associates game with hands" do
+  	game = create(:game)
+  	hand1 = create(:hand, game_id: game.id)
+  	hand2 = create(:hand, game_id: game.id)
+  	expect(game.hands.count).to eq(2)
+  end
 end
