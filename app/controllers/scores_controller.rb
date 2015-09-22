@@ -15,6 +15,16 @@ class ScoresController < ApplicationController
 		@score = Score.find(params[:id])
 	end
 
+	def update
+		@score = Score.find(params[:id])
+		@game = @score.hand.game
+		if @score.update(score_params)
+			redirect_to game_path(@game.id)
+		else
+			render :edit
+		end
+	end
+
 	private
 
 	def score_params

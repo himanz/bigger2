@@ -53,4 +53,49 @@ RSpec.describe ScoresController, type: :controller do
   		expect(response).to render_template :edit
   	end
   end
+
+  describe "PATCH #update" do
+  	before :each do
+  		@game = create(:game)
+  		@hand = create(:hand, game_id: @game.id)
+  		@score = create(:score, hand_id: @hand.id)
+  	end
+
+  	context "with valid attributes" do
+  		it "located the requested @score" do
+  			patch :update, id: @score, score: attributes_for(:score)
+  			expect(assigns(:score)).to eq @score
+  		end
+
+  		it "changes the @score's attributes" do
+  			patch :update, id: @score, score: attributes_for(:score, cards_left: 2)
+  			@score.reload
+  			expect(@score.cards_left).to eq(2)
+  			expect(@score.hand_id).to eq @score.hand_id
+  			expect(@score.player_id).to eq @score.player_id
+  			# Implement when cards_left gets updated, to recalculate points
+  		end
+
+  		it "redirects to the associated game to score" do
+  			patch :update, id: @score, score: attributes_for(:score, cards_left: 2)
+  			expect(response).to redirect_to game_path(@score.hand.game_id)
+  		end
+  	end
+
+  	context "with invalid attributes" do
+  		it "does not change the score's attributes" do
+  			score_info = @score
+  			patch :update, id: @score, score: attributes_for(:score, cards_left: nil)
+  			@score.reload
+  			expect(@score.cards_left).to eq score_info.cards_left
+  			expect(@score.points).to eq score_info.points
+  			expect(@score.hand_id).to eq score_info.hand_id
+  		end
+
+  		it "re-renders the edit template" do
+  			patch :update, id: @score, score: attributes_for(:score, cards_left: nil)
+  			expect(response).to render_template :edit
+  		end
+  	end
+  end
 end
