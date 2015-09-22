@@ -17,4 +17,13 @@ RSpec.describe Hand, type: :model do
   	hand = create(:hand, game_id: game.id)
   	expect(hand.game.id).to eq(game.id)
   end
+
+  it "associates a hand with scores" do
+  	hand = create(:hand)
+  	score1 = create(:score, hand_id: hand.id, player_id: 1)
+  	score2 = create(:score, hand_id: hand.id, player_id: 2)
+  	score3 = create(:score, hand_id: hand.id, player_id: 3)
+  	score4 = create(:score, hand_id: hand.id, player_id: 4)
+    expect(hand.scores.count).to eq(4)
+  end
 end

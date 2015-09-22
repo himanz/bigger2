@@ -29,4 +29,10 @@ RSpec.describe Score, type: :model do
     score.valid?
     expect(score.errors[:player_id].size).to eq(1)
   end
+
+  it "associates a score with a hand" do
+  	hand = create(:hand)
+  	score = create(:score, hand_id: hand.id)
+  	expect(score.hand_id).to eq hand.id
+  end
 end
