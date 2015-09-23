@@ -9,11 +9,15 @@ RSpec.describe ScoresController, type: :controller do
   end
 
   describe 'POST #create' do
+    before :each do
+      @rule = create(:rule)
+      @game = create(:game, rule_id: @rule.id)
+      @hand = create(:hand, game_id: @game.id)
+    end
     context "with valid attributes" do
       it "saves the new score in the database" do
-      	score = create(:score)
         expect{
-          post :create, score: attributes_for(:score)
+          post :create, score: attributes_for(:score, hand_id: @hand.id)
         }.to change(Score, :count).by(1)
       end
 
@@ -27,9 +31,8 @@ RSpec.describe ScoresController, type: :controller do
 
     context "with invalid attributes" do
       it "does not save the new hand in the database" do
-      	score = create(:score)
         expect{
-          post :create, score: attributes_for(:score, hand_id: nil)
+          post :create, score: attributes_for(:score, hand_id: @hand.id, cards_left: nil)
         }.to change(Score, :count).by(0)
       end
 
@@ -41,14 +44,20 @@ RSpec.describe ScoresController, type: :controller do
   end
 
   describe 'GET #edit' do
+    before :each do
+      @rule = create(:rule)
+      @game = create(:game, rule_id: @rule.id)
+      @hand = create(:hand, game_id: @game.id)
+    end
+
   	it "assigns the requested score to @score" do
-  		score = create(:score)
+  		score = create(:score, hand_id: @hand.id)
   		get :edit, id: score
   		expect(assigns(:score)).to eq score
   	end
 
   	it "renders the :edit template" do
-  		score = create(:score)
+  		score = create(:score, hand_id: @hand.id)
   		get :edit, id: score
   		expect(response).to render_template :edit
   	end
@@ -56,19 +65,20 @@ RSpec.describe ScoresController, type: :controller do
 
   describe "PATCH #update" do
   	before :each do
-  		@game = create(:game)
+  		@rule = create(:rule)
+      @game = create(:game, rule_id: @rule.id)
   		@hand = create(:hand, game_id: @game.id)
   		@score = create(:score, hand_id: @hand.id)
   	end
 
   	context "with valid attributes" do
   		it "located the requested @score" do
-  			patch :update, id: @score, score: attributes_for(:score)
+  			patch :update, id: @score, score: attributes_for(:score, hand_id: @hand.id)
   			expect(assigns(:score)).to eq @score
   		end
 
   		it "changes the @score's attributes" do
-  			patch :update, id: @score, score: attributes_for(:score, cards_left: 2)
+  			patch :update, id: @score, score: attributes_for(:score, cards_left: 2, hand_id: @hand.id)
   			@score.reload
   			expect(@score.cards_left).to eq(2)
   			expect(@score.hand_id).to eq @score.hand_id
@@ -77,7 +87,7 @@ RSpec.describe ScoresController, type: :controller do
   		end
 
   		it "redirects to the associated game to score" do
-  			patch :update, id: @score, score: attributes_for(:score, cards_left: 2)
+  			patch :update, id: @score, score: attributes_for(:score, cards_left: 2, hand_id: @hand.id)
   			expect(response).to redirect_to game_path(@score.hand.game_id)
   		end
   	end

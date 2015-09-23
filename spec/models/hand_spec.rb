@@ -19,7 +19,9 @@ RSpec.describe Hand, type: :model do
   end
 
   it "associates a hand with scores" do
-  	hand = create(:hand)
+  	rule = create(:rule)
+    game = create(:game, rule_id: rule.id)
+		hand = create(:hand, game_id: game.id)
   	score1 = create(:score, hand_id: hand.id, player_id: 1)
   	score2 = create(:score, hand_id: hand.id, player_id: 2)
   	score3 = create(:score, hand_id: hand.id, player_id: 3)
