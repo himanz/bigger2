@@ -77,4 +77,23 @@ RSpec.describe HandsController, type: :controller do
       end
     end
   end
+
+  describe "Delete #destroy" do
+    before :each do
+      @rule = create(:rule)
+      @game = create(:game, rule_id: @rule.id)
+      @hand = create(:hand, game_id: @game.id)
+    end
+
+    it "deletes the hand" do
+      expect {
+        delete :destroy, game_id: @game, id: @hand
+      }.to change(Hand, :count).by(-1)
+    end
+
+    it "redirects to the parent game of the hand" do
+      delete :destroy, id: @hand, game_id: @game.id
+      expect(response).to redirect_to game_path(@game)
+    end
+  end
 end

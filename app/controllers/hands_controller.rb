@@ -20,6 +20,13 @@ class HandsController < ApplicationController
 		end
 	end
 
+	def destroy
+		@hand = Hand.find(params[:id])
+		if @hand.destroy
+			redirect_to game_path(@hand.game_id)
+		end
+	end
+
 	private
 
 	def hand_params
