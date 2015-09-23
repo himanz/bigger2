@@ -120,4 +120,12 @@ RSpec.describe Rule, type: :model do
     game2 = create(:game, name: "Testing", rule_id: rule.id)
     expect(Rule.where(id: rule).first.games.count).to eq(2)
   end
+
+  it "is invalid without a unique title" do
+    rule1 = create(:rule)
+    rule2 = build(:rule)
+    rule2.valid?
+    expect(rule2.errors[:title].size).to eq(1)
+
+  end
 end

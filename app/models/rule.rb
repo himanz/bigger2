@@ -1,5 +1,6 @@
 class Rule < ActiveRecord::Base
 	validates_inclusion_of :winner_points, in: [true, false]
+	validates :title, uniqueness: true
 	validates :title,
 	          :winner_points_amount, 
 	          :line1_min,
