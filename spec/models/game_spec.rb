@@ -71,4 +71,11 @@ RSpec.describe Game, type: :model do
   	hand2 = create(:hand, game_id: game.id)
   	expect(game.hands.count).to eq(2)
   end
+
+  it "is invalid without unique name" do
+  	game1 = create(:game)
+  	game2 = build(:game)
+  	game2.valid?
+  	expect(game2.errors[:name].size).to eq(1)
+  end
 end
