@@ -36,4 +36,11 @@ RSpec.describe Player, type: :model do
   	game2 = create(:game, name: "Testing")
   	expect(Player.where(name: game.player1).first.games.count).to eq(2)
   end
+
+  it "is invalid without a unique name" do
+    player1 = create(:player)
+    player2 = build(:player)
+    player2.valid?
+    expect(player2.errors[:name].size).to eq(1)
+  end
 end
